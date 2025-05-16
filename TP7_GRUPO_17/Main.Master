@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="TP7_GRUPO_17.Main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <link rel= "stylesheet" type ="text/css"  href="StyleSheet1.css"  />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+     <div id="navBar">
+        <asp:HyperLink ID="lnkSeleccionar" runat="server" NavigateUrl="SeleccionarSucursales.aspx">Seleccionar Sucursales</asp:HyperLink>
+        |
+        <asp:HyperLink ID="lnkListado" runat="server" NavigateUrl="ListadoSucursalesSeleccionados.aspx">Listado de Sucursales</asp:HyperLink>
+    </div>
+
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
