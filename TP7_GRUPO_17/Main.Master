@@ -13,9 +13,9 @@
 </head>
 <body>
      <div id="navBar">
-        <asp:HyperLink ID="lnkSeleccionar" runat="server" NavigateUrl="SeleccionarSucursales.aspx">Seleccionar Sucursales</asp:HyperLink>
-        |
-        <asp:HyperLink ID="lnkListado" runat="server" NavigateUrl="ListadoSucursalesSeleccionados.aspx">Listado de Sucursales</asp:HyperLink>
+         <asp:HyperLink ID="lnkListado" runat="server" NavigateUrl="ListadoSucursalesSeleccionados.aspx">Listado de Sucursales</asp:HyperLink>
+         |   
+         <asp:HyperLink ID="lnkSeleccionar" runat="server" NavigateUrl="SeleccionarSucursales.aspx">Mostrar Sucursales Seleccionadas</asp:HyperLink>
     </div>
 
     <form id="form1" runat="server">
