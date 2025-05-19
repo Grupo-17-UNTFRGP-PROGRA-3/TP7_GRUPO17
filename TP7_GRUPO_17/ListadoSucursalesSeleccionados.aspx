@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div style=" width: 1041px; height: 181px; margin-left: 40px;">
+
          <h1>Listado de sucursales</h1>
          <br />
 
@@ -93,8 +94,12 @@
              </SelectedItemTemplate>
          </asp:ListView>
          <br />
-         <asp:SqlDataSource ID="SDSSucursales" runat="server" ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>" SelectCommand="SELECT [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal]"></asp:SqlDataSource>
+
+         <asp:SqlDataSource ID="SDSSucursales"
+                            runat="server"
+                            ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>"
+                            SelectCommand="SELECT [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal]">
+         </asp:SqlDataSource>
 
    </div>
-
 </asp:Content>
