@@ -13,5 +13,13 @@ namespace TP7_GRUPO_17
         {
 
         }
+
+        protected void btnDlProvincias_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "eventoFiltrar")
+            {
+                SDSSucursales.SelectCommand = "SELECT [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia = '" + e.CommandArgument.ToString() + "'";
+            }
+        }
     }
 }

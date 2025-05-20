@@ -12,8 +12,8 @@
                     <ItemTemplate>
                         <asp:Button ID="btnDlProvincias"
                                     runat="server"
-                                    Text='<%# bind("DescripcionProvincia") %>'
-                                    style="width: 200px; height: 40px; margin-bottom: 15px; font-size: 14px;"/>
+                                    Text='<%# Bind("DescripcionProvincia") %>'
+                                    style="width: 200px; height: 40px; margin-bottom: 15px; font-size: 14px;" CommandArgument='<%# Bind("DescripcionProvincia") %>' CommandName="eventoFiltrar" OnCommand="btnDlProvincias_Command"/>
                     </ItemTemplate>
                 </asp:DataList>
             </div>
