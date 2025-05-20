@@ -15,6 +15,15 @@ namespace TP7_GRUPO_17
     {
 
         /// <summary>
+        /// DataList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList DataList1;
+
+        /// <summary>
         /// LVSucursales control.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,14 @@ namespace TP7_GRUPO_17
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SDSSucursales;
+
+        /// <summary>
+        /// SDSProvincias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SDSProvincias;
     }
 }
