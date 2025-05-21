@@ -84,6 +84,8 @@
                             <br />
                              <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
                             <br />
+                             <br />
+                             <asp:Button ID="btnSeleccionar" runat="server" CommandArgument='<%# Eval("Id_Sucursal") + "-" + Eval("NombreSucursal") + "-" + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccionar_Command" Text="Seleccionar" />
                         </td>
                     </ItemTemplate>
                     <LayoutTemplate>
@@ -130,7 +132,7 @@
             <asp:SqlDataSource ID="SDSSucursales"
                 runat="server"
                 ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>"
-                SelectCommand="SELECT [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal]"></asp:SqlDataSource>
+                SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal]"></asp:SqlDataSource>
             </div>
 
             <!-- SQL Data Source Provincias -->
