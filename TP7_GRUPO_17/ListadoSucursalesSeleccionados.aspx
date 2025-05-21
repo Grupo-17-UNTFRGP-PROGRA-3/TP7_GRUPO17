@@ -22,6 +22,9 @@
             <div style="flex: 1;">
                 <!-- Titulo -->
                 <h1>Listado de sucursales</h1>
+                <asp:Label ID="lblBusquedaSucursal" runat="server" Text="Busqueda por nombre de sucursal"></asp:Label>
+&nbsp;<asp:TextBox ID="txtBusquedaSucursal" runat="server"></asp:TextBox>
+                <asp:Button ID="btnBuscar" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
                 <br />
 
                 <asp:ListView ID="LVSucursales" runat="server" DataSourceID="SDSSucursales" GroupItemCount="3">
@@ -74,12 +77,11 @@
                         </td>
                     </InsertItemTemplate>
                     <ItemTemplate>
-                        <td runat="server" style="background-color: #DCDCDC; color: #000000;">Nombre de la sucursal:
+                        <td runat="server" style="background-color: #DCDCDC; color: #000000; padding-top: inherit; padding-right: 0px; padding-bottom: 30px; padding-left: 0px;">
                              <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
                             <br />
                             &nbsp;<asp:ImageButton ID="iBSucursal" runat="server" BorderStyle="Solid" ImageAlign="Middle" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' />
                             <br />
-                            Descripcion de la sucural:
                              <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
                             <br />
                         </td>
