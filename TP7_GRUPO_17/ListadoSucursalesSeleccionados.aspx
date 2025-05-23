@@ -10,10 +10,16 @@
             <div style="flex: 0 0 300px; margin-right: 20px; margin-top: 250px;">
                 <asp:DataList ID="DataList1" runat="server" DataSourceID="SDSProvincias">
                     <ItemTemplate>
-                        <asp:Button ID="btnDlProvincias"
+                        <asp:Button ID="btnIDProvincias"
                                     runat="server"
                                     Text='<%# Bind("DescripcionProvincia") %>'
-                                    style="width: 250px; height: 40px; margin-bottom: 45px; font-size: 14px;" CommandArgument='<%# Bind("DescripcionProvincia") %>' CommandName="eventoFiltrar" OnCommand="btnDlProvincias_Command"/>
+                                    style="width: 250px;
+                                           height: 40px;
+                                           margin-bottom: 45px;
+                                           font-size: 14px;"
+                                           CommandArgument='<%# Bind("DescripcionProvincia") %>'
+                                           CommandName="eventoFiltrar"
+                                           OnCommand="btnDlProvincias_Command"/>
                     </ItemTemplate>
                 </asp:DataList>
             </div>
@@ -30,7 +36,7 @@
                 <asp:Button ID="btnBuscar" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
                 <br />
 
-                <asp:ListView ID="LVSucursales" runat="server" DataSourceID="SDSSucursales" GroupItemCount="3">
+                <asp:ListView ID="LVSucursales" runat="server" DataSourceID="SDSSucursales" GroupItemCount="3" >
 
                     <EditItemTemplate>
                         <td runat="server" style="background-color: #008A8C; color: #FFFFFF;">NombreSucursal:
@@ -91,7 +97,7 @@
                                 box-sizing: border-box;
                                 text-align: center;">
                                 <div>
-                                    <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' Font-Bold="true"/>
+                                    <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' Font-Bold="True"/>
                                 </div>
                                 <div>
                                     <asp:ImageButton ID="iBSucursal" runat="server" BorderStyle="Solid" ImageAlign="Middle" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>'
@@ -101,7 +107,12 @@
                                     <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
                                 </div>
                                 <div>
-                                    <asp:Button ID="btnSeleccionar" runat="server" CommandArgument='<%# Eval("Id_Sucursal") + "-" + Eval("NombreSucursal") + "-" + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccionar_Command" Text="Seleccionar" />
+                                    <asp:Button ID="btnSeleccionar"
+                                                runat="server"
+                                                CommandArgument='<%# Eval("Id_Sucursal") + "-" + Eval("NombreSucursal") + "-" + Eval("DescripcionSucursal") %>'
+                                                CommandName="eventoSeleccionar"
+                                                OnCommand="btnSeleccionar_Command"
+                                                Text="Seleccionar" />
                                 </div>
                             </div>
                         </td>
