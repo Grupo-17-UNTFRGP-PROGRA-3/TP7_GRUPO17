@@ -85,25 +85,26 @@
                             <br />
                         </td>
                     </InsertItemTemplate>
+
                     <ItemTemplate>
                         <td runat="server" style="background-color: #DCDCDC; color: #000000; padding-top: inherit; padding-right: 0px; padding-left: 0px; text-align:center; 
-                            width:300px; height:450px;">
+                            width:200px; height:350px;">
                             <div style="
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: space-between;
                                 height: 100%;
-                                padding: 10px;
+                                padding: 0px;
                                 box-sizing: border-box;
                                 text-align: center;">
                                 <div>
                                     <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' Font-Bold="True"/>
                                 </div>
                                 <div>
-                                    <asp:ImageButton ID="iBSucursal" runat="server" BorderStyle="Solid" ImageAlign="Middle" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>'
-                                         Style="width: 85%; aspect-ratio: 1 / 1;" />
+                                    <asp:ImageButton ID="iBSucursal" runat="server" ImageAlign="Middle" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>'
+                                         Style="width: 100%; aspect-ratio: 1 / 1;" />
                                 </div>
-                                <div style="min-height: 80px;">
+                                <div style="min-height: 100px;">
                                     <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
                                 </div>
                                 <div>
@@ -117,6 +118,7 @@
                             </div>
                         </td>
                     </ItemTemplate>
+
                     <LayoutTemplate>
                         <table runat="server">
                             <tr runat="server">
