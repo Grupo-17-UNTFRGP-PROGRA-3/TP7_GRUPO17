@@ -77,15 +77,30 @@
                         </td>
                     </InsertItemTemplate>
                     <ItemTemplate>
-                        <td runat="server" style="background-color: #DCDCDC; color: #000000; padding-top: inherit; padding-right: 0px; padding-bottom: 30px; padding-left: 0px;">
-                             <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' />
-                            <br />
-                            &nbsp;<asp:ImageButton ID="iBSucursal" runat="server" BorderStyle="Solid" ImageAlign="Middle" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>' />
-                            <br />
-                             <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
-                            <br />
-                             <br />
-                             <asp:Button ID="btnSeleccionar" runat="server" CommandArgument='<%# Eval("Id_Sucursal") + "-" + Eval("NombreSucursal") + "-" + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccionar_Command" Text="Seleccionar" />
+                        <td runat="server" style="background-color: #DCDCDC; color: #000000; padding-top: inherit; padding-right: 0px; padding-left: 0px; text-align:center; 
+                            width:300px; height:450px;">
+                            <div style="
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-between;
+                                height: 100%;
+                                padding: 10px;
+                                box-sizing: border-box;
+                                text-align: center;">
+                                <div>
+                                    <asp:Label ID="NombreSucursalLabel" runat="server" Text='<%# Eval("NombreSucursal") %>' Font-Bold="true"/>
+                                </div>
+                                <div>
+                                    <asp:ImageButton ID="iBSucursal" runat="server" BorderStyle="Solid" ImageAlign="Middle" ImageUrl='<%# Eval("URL_Imagen_Sucursal") %>'
+                                         Style="width: 85%; aspect-ratio: 1 / 1;" />
+                                </div>
+                                <div style="min-height: 80px;">
+                                    <asp:Label ID="DescripcionSucursalLabel" runat="server" Text='<%# Eval("DescripcionSucursal") %>' />
+                                </div>
+                                <div>
+                                    <asp:Button ID="btnSeleccionar" runat="server" CommandArgument='<%# Eval("Id_Sucursal") + "-" + Eval("NombreSucursal") + "-" + Eval("DescripcionSucursal") %>' CommandName="eventoSeleccionar" OnCommand="btnSeleccionar_Command" Text="Seleccionar" />
+                                </div>
+                            </div>
                         </td>
                     </ItemTemplate>
                     <LayoutTemplate>
