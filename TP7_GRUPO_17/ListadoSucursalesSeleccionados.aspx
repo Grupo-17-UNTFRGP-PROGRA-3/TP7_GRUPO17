@@ -7,13 +7,13 @@
         <div style="display: flex; align-items: flex-start">
 
             <!-- Datalist (izquierda) -->
-            <div style="flex: 0 0 150px; margin-right: 20px; margin-top: 250px;">
+            <div style="flex: 0 0 300px; margin-right: 20px; margin-top: 250px;">
                 <asp:DataList ID="DataList1" runat="server" DataSourceID="SDSProvincias">
                     <ItemTemplate>
                         <asp:Button ID="btnDlProvincias"
                                     runat="server"
                                     Text='<%# Bind("DescripcionProvincia") %>'
-                                    style="width: 200px; height: 40px; margin-bottom: 15px; font-size: 14px;" CommandArgument='<%# Bind("DescripcionProvincia") %>' CommandName="eventoFiltrar" OnCommand="btnDlProvincias_Command"/>
+                                    style="width: 250px; height: 40px; margin-bottom: 45px; font-size: 14px;" CommandArgument='<%# Bind("DescripcionProvincia") %>' CommandName="eventoFiltrar" OnCommand="btnDlProvincias_Command"/>
                     </ItemTemplate>
                 </asp:DataList>
             </div>
