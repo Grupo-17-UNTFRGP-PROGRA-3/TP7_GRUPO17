@@ -12,7 +12,15 @@ namespace TP7_GRUPO_17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(IsPostBack)
+            {
+                SDSSucursales.SelectCommand = ViewState["SQL"].ToString();
+            }
+            else
+            {
+                string  strSql = "SELECT[Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM[Sucursal]";
+                ViewState["SQL"] = strSql;
+            }
         }
 
         protected void btnDlProvincias_Command(object sender, CommandEventArgs e)
@@ -20,14 +28,20 @@ namespace TP7_GRUPO_17
             if (e.CommandName == "eventoFiltrar")
             {
                 // Convertir en clase GestionDeDatos
-                SDSSucursales.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia = '" + e.CommandArgument.ToString() + "'";
+                string strSql = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia = '" + e.CommandArgument.ToString() + "'";
+                ViewState["SQL"] = strSql;
+                SDSSucursales.SelectCommand = strSql;
+                SDSSucursales.DataBind();
             }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             // Convertir en clase GestionDeDatos
-            SDSSucursales.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] WHERE NombreSucursal LIKE '%" + txtBusquedaSucursal.Text + "%'";
+            string strSql = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] WHERE NombreSucursal LIKE '%" + txtBusquedaSucursal.Text + "%'";
+            ViewState["SQL"] = strSql;
+            SDSSucursales.SelectCommand = strSql;
+            SDSSucursales.DataBind();
         }
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
