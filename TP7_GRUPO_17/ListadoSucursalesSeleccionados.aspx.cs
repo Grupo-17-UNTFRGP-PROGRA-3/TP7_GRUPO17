@@ -19,13 +19,15 @@ namespace TP7_GRUPO_17
         {
             if (e.CommandName == "eventoFiltrar")
             {
-                SDSSucursales.SelectCommand = "SELECT [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia = '" + e.CommandArgument.ToString() + "'";
+                // Convertir en clase GestionDeDatos
+                SDSSucursales.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia = '" + e.CommandArgument.ToString() + "'";
             }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            // Convertir en clase GestionDeDatos
+            SDSSucursales.SelectCommand = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] WHERE NombreSucursal LIKE '%" + txtBusquedaSucursal.Text + "%'";
         }
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
