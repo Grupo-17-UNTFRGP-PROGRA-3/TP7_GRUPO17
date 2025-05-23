@@ -20,10 +20,13 @@
 
             <!-- Listview (derecha) -->
             <div style="flex: 1;">
+
                 <!-- Titulo -->
                 <h1>Listado de sucursales</h1>
-                <asp:Label ID="lblBusquedaSucursal" runat="server" Text="Busqueda por nombre de sucursal"></asp:Label>
-&nbsp;<asp:TextBox ID="txtBusquedaSucursal" runat="server"></asp:TextBox>
+
+                <!-- Busqueda por nombre de sucursal -->
+                <asp:Label ID="lblBusquedaSucursal" runat="server" Text="Busqueda por nombre de sucursal  "></asp:Label>
+                <asp:TextBox ID="txtBusquedaSucursal" runat="server"></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
                 <br />
 
@@ -115,7 +118,7 @@
                             </tr>
                             <tr runat="server">
                                 <td runat="server" style="text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
-                                    <asp:DataPager ID="DataPager1" runat="server" PageSize="12">
+                                    <asp:DataPager ID="DataPager1" runat="server" PageSize="6">
                                         <Fields>
                                             <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                                             <asp:NumericPagerField />
@@ -145,9 +148,9 @@
             <!-- SQL Data Source Sucursales -->
             <div>
             <asp:SqlDataSource ID="SDSSucursales"
-                runat="server"
-                ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>"
-                SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal]"></asp:SqlDataSource>
+                               runat="server"
+                               ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>"
+                               SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal]"></asp:SqlDataSource>
             </div>
 
             <!-- SQL Data Source Provincias -->
@@ -157,7 +160,6 @@
                                    ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>"
                                    SelectCommand="SELECT [DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
             </div>
-
 
         </div>
     </div>
