@@ -60,7 +60,9 @@ namespace TP7_GRUPO_17
 
             SqlConnection conn = new SqlConnection(cadenaConexion);
             conn.Open();
-            string sql = "SELECT Id_Sucursal, NombreSucursal, URL_Imagen_Sucursal, DescripcionSucursal FROM Sucursal INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia = '" + provSeleccionada + "' AND NombreSucursal LIKE '%" +sqlEvento + "%'";
+            string sql = "SELECT Id_Sucursal, NombreSucursal, URL_Imagen_Sucursal, DescripcionSucursal " +
+                "FROM Sucursal INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia " +
+                "WHERE DescripcionProvincia = '" + provSeleccionada + "' AND NombreSucursal LIKE '%" +sqlEvento + "%'";
             SqlDataAdapter sqlDA = new SqlDataAdapter(sql, cadenaConexion);
             DataSet dt = new DataSet();
             sqlDA.Fill(dt);
@@ -71,7 +73,9 @@ namespace TP7_GRUPO_17
         {
             SqlConnection conn = new SqlConnection(cadenaConexion);
             conn.Open();
-            string sql = "SELECT Id_Sucursal, NombreSucursal, URL_Imagen_Sucursal, DescripcionSucursal FROM Sucursal INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia LIKE '%' AND NombreSucursal LIKE '%" + sqlEvento + "%'";
+            string sql = "SELECT Id_Sucursal, NombreSucursal, URL_Imagen_Sucursal, DescripcionSucursal FROM " +
+                "Sucursal INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia " +
+                "WHERE DescripcionProvincia LIKE '%' AND NombreSucursal LIKE '%" + sqlEvento + "%'";
             SqlDataAdapter sqlDA = new SqlDataAdapter(sql, cadenaConexion);
             DataSet dt = new DataSet();
             sqlDA.Fill(dt);

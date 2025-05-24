@@ -110,7 +110,7 @@
                                 <div>
                                     <asp:Button ID="btnSeleccionar"
                                                 runat="server"
-                                                CommandArgument='<%# Eval("Id_Sucursal") + "-" + Eval("NombreSucursal") + "-" + Eval("DescripcionSucursal") %>'
+                                                CommandArgument='<%# Eval("Id_Sucursal").ToString() + "-" + Eval("NombreSucursal").ToString() + "-" + Eval("DescripcionSucursal").ToString() %>'
                                                 CommandName="eventoSeleccionar"
                                                 OnCommand="btnSeleccionar_Command"
                                                 Text="Seleccionar" />

@@ -17,7 +17,6 @@ namespace TP7_GRUPO_17
             {
                 dlProvincias.DataSource = gestionDeDatos.CargarProvincias();
                 dlProvincias.DataBind();
-
                 LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
                 LVSucursales.DataBind();
             }
@@ -70,6 +69,7 @@ namespace TP7_GRUPO_17
                     LVSucursales.DataBind();
                 }
             }
+            txtBusquedaSucursal.Text = string.Empty;
         }
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
