@@ -8,11 +8,11 @@
 
             <!-- Datalist (izquierda) -->
             <div style="flex: 0 0 300px; margin-right: 20px; margin-top: 250px;">
-                <asp:DataList ID="DataList1" runat="server" DataSourceID="SDSProvincias">
+                <asp:DataList ID="dlProvincias" runat="server" >
                     <ItemTemplate>
                         <asp:Button ID="btnIDProvincias"
                                     runat="server"
-                                    Text='<%# Bind("DescripcionProvincia") %>'
+                                    Text='<%# Eval( "DescripcionProvincia") %>'
                                     style="width: 250px;
                                            height: 40px;
                                            margin-bottom: 45px;
@@ -36,7 +36,7 @@
                 <asp:Button ID="btnBuscar" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
                 <br />
 
-                <asp:ListView ID="LVSucursales" runat="server" DataSourceID="SDSSucursales" GroupItemCount="3" >
+                <asp:ListView ID="LVSucursales" runat="server" GroupItemCount="3" EnableTheming="True" >
 
                     <EditItemTemplate>
                         <td runat="server" style="background-color: #008A8C; color: #FFFFFF;">NombreSucursal:
@@ -160,18 +160,10 @@
 
             <!-- SQL Data Source Sucursales -->
             <div>
-            <asp:SqlDataSource ID="SDSSucursales"
-                               runat="server"
-                               ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>"
-                               SelectCommand="SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal]"></asp:SqlDataSource>
             </div>
 
             <!-- SQL Data Source Provincias -->
             <div>
-                <asp:SqlDataSource ID="SDSProvincias"
-                                   runat="server"
-                                   ConnectionString="<%$ ConnectionStrings:BDSucursalesConnectionString %>"
-                                   SelectCommand="SELECT [DescripcionProvincia] FROM [Provincia]"></asp:SqlDataSource>
             </div>
 
         </div>

@@ -12,14 +12,27 @@ namespace TP7_GRUPO_17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(IsPostBack)
+            if(!IsPostBack)
             {
-                SDSSucursales.SelectCommand = ViewState["SQL"].ToString();
+                GestionDeDatos gestionDeDatos = new GestionDeDatos();
+                dlProvincias.DataSource = gestionDeDatos.CargarProvincias();
+                dlProvincias.DataBind();
+
+                LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
+                LVSucursales.DataBind();
             }
             else
             {
-                string  strSql = "SELECT[Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM[Sucursal]";
-                ViewState["SQL"] = strSql;
+                if (ViewState["provSel"] == null)
+                {
+                    ViewState["provSel"] = "Buenos Aires";
+                }
+                else
+                {
+                    GestionDeDatos gdd = new GestionDeDatos();
+                    LVSucursales.DataSource = gdd.FiltroPorProvincias(ViewState["provSel"].ToString());
+                    LVSucursales.DataBind();
+                }
             }
         }
 
@@ -27,26 +40,25 @@ namespace TP7_GRUPO_17
         {
             if (e.CommandName == "eventoFiltrar")
             {
-                // Convertir en clase GestionDeDatos
-                string strSql = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia = '" + e.CommandArgument.ToString() + "'";
-                ViewState["SQL"] = strSql;
-                SDSSucursales.SelectCommand = strSql;
-                SDSSucursales.DataBind();
+                string filtro = e.CommandArgument.ToString();
+                GestionDeDatos gdd = new GestionDeDatos();
+                LVSucursales.DataSource = gdd.FiltroPorProvincias(filtro);
+                LVSucursales.DataBind();
+                ViewState["provSel"] = filtro;
             }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            // Convertir en clase GestionDeDatos
-            string strSql = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] FROM [Sucursal] WHERE NombreSucursal LIKE '%" + txtBusquedaSucursal.Text + "%'";
-            ViewState["SQL"] = strSql;
-            SDSSucursales.SelectCommand = strSql;
-            SDSSucursales.DataBind();
+            string filtro = txtBusquedaSucursal.Text;
+            GestionDeDatos gdd = new GestionDeDatos();
+            LVSucursales.DataSource = gdd.FiltroBuscar(filtro, ViewState["provSel"].ToString());
+            LVSucursales.DataBind();
         }
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
         {
-            if(e.CommandName == "eventoSeleccionar")
+            if (e.CommandName == "eventoSeleccionar")
             {
                 DataTable sucursalesSeleccionadas = new DataTable();
 
