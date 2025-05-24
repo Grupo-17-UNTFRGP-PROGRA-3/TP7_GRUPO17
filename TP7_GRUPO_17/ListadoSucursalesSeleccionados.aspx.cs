@@ -52,16 +52,23 @@ namespace TP7_GRUPO_17
         {
             GestionDeDatos gdd = new GestionDeDatos();
             string filtro = txtBusquedaSucursal.Text;
-            if (filtro == string.Empty) { gdd.ObtenerDatos(); }
-            if (ViewState["provSel"] == null)
-            {
-                LVSucursales.DataSource = gdd.FiltroBuscar(filtro);
+            if (filtro == string.Empty) 
+            { 
+                LVSucursales.DataSource = gdd.ObtenerDatos(); 
                 LVSucursales.DataBind();
             }
             else
             {
-                LVSucursales.DataSource = gdd.FiltroBuscar(filtro, ViewState["provSel"].ToString());
-                LVSucursales.DataBind();
+                if (ViewState["provSel"] == null)
+                {
+                    LVSucursales.DataSource = gdd.FiltroBuscar(filtro);
+                    LVSucursales.DataBind();
+                }
+                else
+                {
+                    LVSucursales.DataSource = gdd.FiltroBuscar(filtro, ViewState["provSel"].ToString());
+                    LVSucursales.DataBind();
+                }
             }
         }
 
