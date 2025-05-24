@@ -17,15 +17,15 @@ namespace TP7_GRUPO_17
 
         public GestionDeDatos() { }
        
-        public DataSet ObtenerDatos ()
+        public DataTable ObtenerDatos ()
         {
             SqlConnection conn = new SqlConnection(cadenaConexion);
             conn.Open();
-            string sql = "SELECT[Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] " +
+            string sql = "SELECT [Id_Sucursal], [NombreSucursal], [URL_Imagen_Sucursal], [DescripcionSucursal] " +
                 "FROM[Sucursal]";
             SqlDataAdapter sqlDA = new SqlDataAdapter(sql, cadenaConexion);
-            DataSet dt = new DataSet();
-            sqlDA.Fill(dt, "DescripcionSucursal");
+            DataTable dt = new DataTable();
+            sqlDA.Fill(dt);
             conn.Close();
             return dt;
         }

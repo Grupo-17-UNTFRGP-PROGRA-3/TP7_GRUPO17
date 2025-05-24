@@ -36,7 +36,7 @@
                 <asp:Button ID="btnBuscar" runat="server" OnClick="btnBuscar_Click" Text="Buscar" />
                 <br />
 
-                <asp:ListView ID="LVSucursales" runat="server" GroupItemCount="3" EnableTheming="True" >
+                <asp:ListView ID="LVSucursales" runat="server" GroupItemCount="3" EnableTheming="True" OnPagePropertiesChanging="LVSucursales_PagePropertiesChanging" >
 
                     <EditItemTemplate>
                         <td runat="server" style="background-color: #008A8C; color: #FFFFFF;">NombreSucursal:
@@ -131,7 +131,7 @@
                             </tr>
                             <tr runat="server">
                                 <td runat="server" style="text-align: center; background-color: #CCCCCC; font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000;">
-                                    <asp:DataPager ID="DataPager1" runat="server" PageSize="6">
+                                    <asp:DataPager ID="DataPager1" runat="server" PageSize="6" PagedControlID="LVSucursales">
                                         <Fields>
                                             <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="False" ShowNextPageButton="False" ShowPreviousPageButton="False" />
                                             <asp:NumericPagerField />

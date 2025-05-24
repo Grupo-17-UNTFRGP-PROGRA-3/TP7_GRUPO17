@@ -20,19 +20,19 @@ namespace TP7_GRUPO_17
                 LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
                 LVSucursales.DataBind();
             }
-            else
-            {
-                if (ViewState["provSel"] == null)
-                {
-                    LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
-                    LVSucursales.DataBind();
-                }
-                else
-                {
-                    LVSucursales.DataSource = gestionDeDatos.FiltroPorProvincias(ViewState["provSel"].ToString());
-                    LVSucursales.DataBind();
-                }
-            }
+            //else
+            //{
+            //    if (ViewState["provSel"] == null)
+            //    {
+            //        LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
+            //        LVSucursales.DataBind();
+            //    }
+            //    else
+            //    {
+            //        LVSucursales.DataSource = gestionDeDatos.FiltroPorProvincias(ViewState["provSel"].ToString());
+            //        LVSucursales.DataBind();
+            //    }
+            //}
         }
 
         protected void btnDlProvincias_Command(object sender, CommandEventArgs e)
@@ -102,6 +102,22 @@ namespace TP7_GRUPO_17
                 sucursalesSeleccionadas.Rows.Add(row);
                 Session["sucursales"] = sucursalesSeleccionadas;
             }
+        }
+
+        protected void LVSucursales_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager pager = (DataPager)LVSucursales.FindControl("DataPager1");
+            if (pager != null)
+                pager.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+
+            GestionDeDatos gdd = new GestionDeDatos();
+
+            if (ViewState["provSel"] == null)
+                LVSucursales.DataSource = gdd.ObtenerDatos();
+            else
+                LVSucursales.DataSource = gdd.FiltroPorProvincias(ViewState["provSel"].ToString());
+
+            LVSucursales.DataBind();
         }
     }
 }
