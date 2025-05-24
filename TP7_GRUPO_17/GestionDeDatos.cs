@@ -67,6 +67,17 @@ namespace TP7_GRUPO_17
             conn.Close();
             return dt;
         }
+        public DataSet FiltroBuscar(string sqlEvento)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            conn.Open();
+            string sql = "SELECT Id_Sucursal, NombreSucursal, URL_Imagen_Sucursal, DescripcionSucursal FROM Sucursal INNER JOIN Provincia ON Sucursal.Id_ProvinciaSucursal = Provincia.Id_Provincia WHERE DescripcionProvincia LIKE '%' AND NombreSucursal LIKE '%" + sqlEvento + "%'";
+            SqlDataAdapter sqlDA = new SqlDataAdapter(sql, cadenaConexion);
+            DataSet dt = new DataSet();
+            sqlDA.Fill(dt);
+            conn.Close();
+            return dt;
+        }
 
 
 

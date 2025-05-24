@@ -12,9 +12,9 @@ namespace TP7_GRUPO_17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GestionDeDatos gestionDeDatos = new GestionDeDatos();
             if(!IsPostBack)
             {
-                GestionDeDatos gestionDeDatos = new GestionDeDatos();
                 dlProvincias.DataSource = gestionDeDatos.CargarProvincias();
                 dlProvincias.DataBind();
 
@@ -25,12 +25,12 @@ namespace TP7_GRUPO_17
             {
                 if (ViewState["provSel"] == null)
                 {
-                    ViewState["provSel"] = "Buenos Aires";
+                    LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
+                    LVSucursales.DataBind();
                 }
                 else
                 {
-                    GestionDeDatos gdd = new GestionDeDatos();
-                    LVSucursales.DataSource = gdd.FiltroPorProvincias(ViewState["provSel"].ToString());
+                    LVSucursales.DataSource = gestionDeDatos.FiltroPorProvincias(ViewState["provSel"].ToString());
                     LVSucursales.DataBind();
                 }
             }
@@ -50,10 +50,19 @@ namespace TP7_GRUPO_17
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            string filtro = txtBusquedaSucursal.Text;
             GestionDeDatos gdd = new GestionDeDatos();
-            LVSucursales.DataSource = gdd.FiltroBuscar(filtro, ViewState["provSel"].ToString());
-            LVSucursales.DataBind();
+            string filtro = txtBusquedaSucursal.Text;
+            if (filtro == string.Empty) { gdd.ObtenerDatos(); }
+            if (ViewState["provSel"] == null)
+            {
+                LVSucursales.DataSource = gdd.FiltroBuscar(filtro);
+                LVSucursales.DataBind();
+            }
+            else
+            {
+                LVSucursales.DataSource = gdd.FiltroBuscar(filtro, ViewState["provSel"].ToString());
+                LVSucursales.DataBind();
+            }
         }
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
