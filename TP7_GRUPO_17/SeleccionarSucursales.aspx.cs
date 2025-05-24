@@ -93,6 +93,11 @@ namespace TP7_GRUPO_17
                 else
                 {
                     sucursalesSeleccionadas = (DataTable)Session["sucursales"];
+                    foreach(DataRow filaSelec in sucursalesSeleccionadas.Rows)
+                    {
+                        if (filaSelec["ID_SUCURSAL"].ToString() == idSucursal)
+                            return;
+                    }
                 }
 
                 DataRow row = sucursalesSeleccionadas.NewRow();
