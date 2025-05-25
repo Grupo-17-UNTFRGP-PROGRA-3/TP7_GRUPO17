@@ -24,9 +24,21 @@ namespace TP7_GRUPO_17
                 {
                     gvSucursalesSeleccionadas.DataSource = null;
                     gvSucursalesSeleccionadas.DataBind();
+                    txtSinSucursales.Text = "No hay Ninguna sucursal Seleccionada";
                 }
             }
 
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            if (Session["sucursales"] != null)
+            {
+                gvSucursalesSeleccionadas.DataSource = null;
+                gvSucursalesSeleccionadas.DataBind();
+                Session["sucursales"] = null;
+                txtSinSucursales.Text = "No hay Ninguna sucursal Seleccionada";
+            }
         }
     }
 }

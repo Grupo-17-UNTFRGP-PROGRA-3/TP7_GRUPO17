@@ -86,7 +86,8 @@
     <Content Include="SeleccionarSucursales.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GestionDeDatos.cs" />
+    <Compile Include="clases\GestionDeDatos.cs" />
+    <Compile Include="clases\GestionDeSucursales.cs" />
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

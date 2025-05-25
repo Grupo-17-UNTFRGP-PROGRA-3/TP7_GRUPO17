@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TP7_GRUPO_17.clases;
 
 namespace TP7_GRUPO_17
 {
@@ -12,27 +13,15 @@ namespace TP7_GRUPO_17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GestionDeDatos gestionDeDatos = new GestionDeDatos();
-            if(!IsPostBack)
+            GestionDeSucursales GDS = new GestionDeSucursales();
+            if (!IsPostBack)
             {
-                dlProvincias.DataSource = gestionDeDatos.CargarProvincias();
+                dlProvincias.DataSource = GDS.CargarProvincias();
                 dlProvincias.DataBind();
-                LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
+                LVSucursales.DataSource = GDS.ObtenerDatos();
                 LVSucursales.DataBind();
             }
-            //else
-            //{
-            //    if (ViewState["provSel"] == null)
-            //    {
-            //        LVSucursales.DataSource = gestionDeDatos.ObtenerDatos();
-            //        LVSucursales.DataBind();
-            //    }
-            //    else
-            //    {
-            //        LVSucursales.DataSource = gestionDeDatos.FiltroPorProvincias(ViewState["provSel"].ToString());
-            //        LVSucursales.DataBind();
-            //    }
-            //}
+           
         }
 
         protected void btnDlProvincias_Command(object sender, CommandEventArgs e)
@@ -40,37 +29,44 @@ namespace TP7_GRUPO_17
             if (e.CommandName == "eventoFiltrar")
             {
                 string filtro = e.CommandArgument.ToString();
-                GestionDeDatos gdd = new GestionDeDatos();
-                LVSucursales.DataSource = gdd.FiltroPorProvincias(filtro);
+                GestionDeSucursales GDS = new GestionDeSucursales();
+                LVSucursales.DataSource = GDS.FiltroPorProvincias(filtro);
                 LVSucursales.DataBind();
                 ViewState["provSel"] = filtro;
+                ViewState["resultadoBusqueda"] = null;
+
             }
         }
 
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            GestionDeDatos gdd = new GestionDeDatos();
+            GestionDeSucursales GDS = new GestionDeSucursales();
             string filtro = txtBusquedaSucursal.Text;
-            if (filtro == string.Empty) 
-            { 
-                LVSucursales.DataSource = gdd.ObtenerDatos(); 
-                LVSucursales.DataBind();
+
+            DataTable resultado;
+
+            if (string.IsNullOrEmpty(filtro))
+            {
+                resultado = GDS.ObtenerDatos();
+                ViewState["resultadoBusqueda"] = null;
+                ViewState["provSel"] = null;
             }
             else
             {
                 if (ViewState["provSel"] == null)
-                {
-                    LVSucursales.DataSource = gdd.FiltroBuscar(filtro);
-                    LVSucursales.DataBind();
-                }
+                    resultado = GDS.FiltroBuscar(filtro);
                 else
-                {
-                    LVSucursales.DataSource = gdd.FiltroBuscar(filtro, ViewState["provSel"].ToString());
-                    LVSucursales.DataBind();
-                }
+                    resultado = GDS.FiltroBuscar(filtro, ViewState["provSel"].ToString());
             }
+
+            ViewState["resultadoBusqueda"] = resultado;
+            LVSucursales.DataSource = resultado;
+            LVSucursales.DataBind();
+
             txtBusquedaSucursal.Text = string.Empty;
         }
+
 
         protected void btnSeleccionar_Command(object sender, CommandEventArgs e)
         {
@@ -115,14 +111,21 @@ namespace TP7_GRUPO_17
             if (pager != null)
                 pager.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
 
-            GestionDeDatos gdd = new GestionDeDatos();
-
-            if (ViewState["provSel"] == null)
-                LVSucursales.DataSource = gdd.ObtenerDatos();
+            if (ViewState["resultadoBusqueda"] != null)
+            {
+                LVSucursales.DataSource = (DataTable)ViewState["resultadoBusqueda"];
+            }
             else
-                LVSucursales.DataSource = gdd.FiltroPorProvincias(ViewState["provSel"].ToString());
+            {
+                GestionDeSucursales GDS = new GestionDeSucursales();
+                if (ViewState["provSel"] == null)
+                    LVSucursales.DataSource = GDS.ObtenerDatos();
+                else
+                    LVSucursales.DataSource = GDS.FiltroPorProvincias(ViewState["provSel"].ToString());
+            }
 
             LVSucursales.DataBind();
         }
+
     }
 }
