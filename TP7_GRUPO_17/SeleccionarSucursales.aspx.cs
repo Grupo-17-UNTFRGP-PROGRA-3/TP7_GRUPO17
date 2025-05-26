@@ -60,6 +60,10 @@ namespace TP7_GRUPO_17
                     resultado = GDS.FiltroBuscar(filtro, ViewState["provSel"].ToString());
             }
 
+            DataPager pager = (DataPager)LVSucursales.FindControl("DataPager1");
+            if (pager != null)
+                pager.SetPageProperties(0, pager.MaximumRows, false);
+
             ViewState["resultadoBusqueda"] = resultado;
             LVSucursales.DataSource = resultado;
             LVSucursales.DataBind();
